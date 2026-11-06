@@ -92,9 +92,15 @@ if(BUILD_TESTING)
     test_conversion
   )
 
+  list(APPEND AMENT_LINT_AUTO_EXCLUDE "ament_cmake_cppcheck")
+
   find_package(ament_lint_auto REQUIRED)
   find_package(ament_cmake_gtest REQUIRED)
   ament_lint_auto_find_test_dependencies()
+
+  ament_cppcheck(LANGUAGE c++
+    LIBRARIES googletest)
+
   ament_find_gtest()
 
   foreach(test_name ${TEST_TARGETS})
